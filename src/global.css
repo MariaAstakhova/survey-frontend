@@ -1,0 +1,19 @@
+.topicButton {
+  background: #eee8aa;
+  border: none;
+  padding: 20px;
+  margin: 20px;
+  font-size: 46px;
+}
+
+.submitButton {
+  background: pink;
+  border: none;
+  padding: 20px;
+  margin: 20px;
+  font-size: 46px;
+}
+
+.header {
+  font-size: 46px;
+}

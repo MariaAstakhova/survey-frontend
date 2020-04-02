@@ -23,7 +23,7 @@ export default class AllQuestionnairesPage extends Component {
   render() {
     return (
       <div className="App">
-        <header>
+        <header className="header">
           <p>Survey App</p>
         </header>
         <div>
