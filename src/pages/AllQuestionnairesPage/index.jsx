@@ -20,6 +20,10 @@ export default class AllQuestionnairesPage extends Component {
     this.callServices();
   }
 
+  getQuestionnaires() {
+    return "/questions";
+  }
+
   render() {
     return (
       <div className="App">
@@ -29,6 +33,11 @@ export default class AllQuestionnairesPage extends Component {
         <div>
           <DisplayTopics topics={this.state.topicList} />
         </div>
+        <form action={this.getQuestionnaires()}>
+          <div>
+            <button type="submit">Do survey</button>
+          </div>
+        </form>
       </div>
     );
   }
