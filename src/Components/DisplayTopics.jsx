@@ -8,8 +8,21 @@ export default class DisplayQuestions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: null
+      value: null,
+      clicked: Array()
     };
+  }
+
+  // handleClick() {
+  //   this.setState(prevState => ({
+  //     isOn: !prevState.isOn
+  //   }));
+  // }
+
+  handleClick(i) {
+    const clicked = this.state.clicked.slice();
+    clicked[i] = !clicked[i];
+    this.setState({ clicked: clicked });
   }
 
   render() {
@@ -18,9 +31,14 @@ export default class DisplayQuestions extends Component {
       for (let i = 0; i < topics.length; i++) {
         var jsonString = JSON.stringify(topics[i].topicText);
         var jsonObject = JSON.parse(jsonString);
+        this.state.clicked.push(false);
         topicsToDisplay.push(
           <div>
-            <TopicButton value={jsonObject} />
+            <TopicButton
+              value={jsonObject}
+              isOn={this.state.clicked[i]}
+              onClick={() => this.handleClick(i)}
+            />
           </div>
         );
       }
