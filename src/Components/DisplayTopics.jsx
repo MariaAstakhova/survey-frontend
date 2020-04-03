@@ -7,10 +7,23 @@ let topicsToDisplay = [];
 export default class DisplayQuestions extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: null,
-      clicked: Array()
-    };
+  }
+
+  renderQuestionnaires(i) {
+    if (this.props.topics != null) {
+      for (let i = 0; i < this.props.topics.length; i++) {
+        var jsonString = JSON.stringify(this.props.topics[i].topicText);
+        var jsonObject = JSON.parse(jsonString);
+        topicsToDisplay.push(jsonObject);
+      }
+    }
+    return (
+      <TopicButton
+        topic={topicsToDisplay[i]}
+        isOn={this.props.clicked[i]}
+        onClick={() => this.props.OnClick(i)}
+      />
+    );
   }
 
   // handleClick() {
@@ -19,34 +32,15 @@ export default class DisplayQuestions extends Component {
   //   }));
   // }
 
-  handleClick(i) {
-    const clicked = this.state.clicked.slice();
-    clicked[i] = !clicked[i];
-    this.setState({ clicked: clicked });
-  }
-
   render() {
-    let topics = this.props.topics;
-    if (topics != null) {
-      for (let i = 0; i < topics.length; i++) {
-        var jsonString = JSON.stringify(topics[i].topicText);
-        var jsonObject = JSON.parse(jsonString);
-        this.state.clicked.push(false);
-        topicsToDisplay.push(
-          <div>
-            <TopicButton
-              value={jsonObject}
-              isOn={this.state.clicked[i]}
-              onClick={() => this.handleClick(i)}
-            />
-          </div>
-        );
-      }
+    let result = [];
+    for (let i = 0; i < 2; i++) {
+      result.push(this.renderQuestionnaires(i));
     }
 
     return (
       <div>
-        <div>{topicsToDisplay}</div>
+        <div>{result}</div>
         <div>
           <button className="submitButton"> Submit</button>
         </div>
